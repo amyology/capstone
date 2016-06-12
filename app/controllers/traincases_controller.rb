@@ -1,0 +1,2 @@
+class TraincasesController < ApplicationController
+end
