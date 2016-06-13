@@ -1,4 +1,125 @@
-Products<br>
+<%= link_to 'User', '/user' %> 
 
-<%= link_to 'User', '/user' %><br>
-<%= link_to 'Colors', '/colors' %>
+<h1>Products</h1>
+
+<div>
+  <h2>Eyeshadows</h2>
+  <% @eyeshadow.each do |product| %>
+    <%= image_tag "#{product.image}", class: 'thumbnail' %>
+  <% end %>
+</div>
+
+<h1>Colors</h1>
+
+<div class="align-left">
+  <h2>Red</h2>
+  <% @red.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Maroon</h2>
+  <% @maroon.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Peach</h2>
+  <% @peach.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Orange</h2>
+  <% @orange.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+
+<div class="align-left">
+  <h2>Green</h2>
+  <% @green.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Teal</h2>
+  <% @teal.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Turquoise</h2>
+  <% @turquoise.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Aqua</h2>
+  <% @aqua.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Blue</h2>
+  <% @blue.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Lavender</h2>
+  <% @lavender.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Violet</h2>
+  <% @violet.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>White</h2>
+  <% @white.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Black</h2>
+  <% @black.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Gold</h2>
+  <% @gold.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Silver</h2>
+  <% @silver.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2>Copper</h2>
+  <% @copper.each do |product| %>
+    <div class="swatch-box" style="background-color:<%= product.value %>"> </div> <br>
+  <% end %>
+</div>
