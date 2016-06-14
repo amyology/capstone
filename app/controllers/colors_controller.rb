@@ -12,7 +12,10 @@ class ColorsController < ApplicationController
     @peach = Color.where(name: "peach")
     @white = Color.where(name: "white")
     @black = Color.where(name: "black")
+  end
 
+  def show
+    @color = Color.where(name: params[:color])
   end
 
 end

@@ -8,6 +8,29 @@
 </head>
 <body>
 
+<div>
+  <% if user_signed_in? %>
+    <%= link_to 'Profile', '/user' %>   
+    <%= link_to 'Sign Out', '/users/sign_out', method: :delete %>
+  <% else %> 
+    <%= link_to 'Sign In', '/users/sign_in' %>
+    <%= link_to 'Sign Up', '/users/sign_up' %>
+  <% end %>
+</div>
+<br>
+
+<div>
+  <%= form_tag '/', method: :get do %>
+    <%= text_field_tag :search, nil, placeholder: "Search" %>
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%= link_to 'Colors', '/colors' %> <br><br>
+
 <%= yield %>
 
 </body>

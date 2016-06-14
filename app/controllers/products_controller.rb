@@ -2,7 +2,21 @@ class ProductsController < ApplicationController
   
   def index
     @products = Product.all
-    @eyeshadow = Product.where(product_type: "eyeshadow")
+    @recent_products = Product.all.sort_by { |product| [product.created_at, product.updated_at].max }.reverse!.take(5)
+
+    search = params[:search]
+
+    if search
+      @products = @products.where("name ILIKE ? OR brand ILIKE ? OR product_color ILIKE ? OR product_type ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+    end
+
+  end
+
+  def show
+    @product = Product.find(params[:id])
+  end
+
+  def colors
     @green = Product.where(product_color: "green")
     @red = Product.where(product_color: "red")
     @peach = Product.where(product_color: "peach")
@@ -18,7 +32,7 @@ class ProductsController < ApplicationController
     @lavender = Product.where(product_color: "lavender")
     @copper = Product.where(product_color: "copper")
     @black = Product.where(product_color: "black")
-    @violet = Product.where(product_color: "violet")    
+    @violet = Product.where(product_color: "violet")
   end
 
 end
