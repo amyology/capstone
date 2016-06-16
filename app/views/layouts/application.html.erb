@@ -9,6 +9,8 @@
 <body>
 
 <div>
+  <%= link_to 'Home', '/' %>
+  <%= link_to 'Colors', '/colors' %>
   <% if user_signed_in? %>
     <%= link_to 'Profile', '/user' %>   
     <%= link_to 'Sign Out', '/users/sign_out', method: :delete %>
@@ -29,7 +31,7 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
-<%= link_to 'Colors', '/colors' %> <br><br>
+
 
 <%= yield %>
 

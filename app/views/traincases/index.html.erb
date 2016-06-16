@@ -1,7 +1,7 @@
 <h1>Traincase</h1>
 
 <% @traincase.each do |item| %>
-<%= image_tag "#{item.image}", class: 'thumbnail' %><br>
+  <a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a><br>
   Product Name: <%= item.name %><br>
   Brand: <%= item.brand %><br>
   Product Type: <%= item.product_type %><br>

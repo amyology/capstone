@@ -1,4 +1,23 @@
 <h1>Profile</h1>
 
-<%= link_to 'Traincase', '/traincase' %><br>
-<%= link_to 'Wishlist', '/wishlist' %>
+<div class="align-left">
+  <h2><%= link_to 'Traincase', '/traincase' %></h2>
+  <% @traincase.each do |item| %>
+    <a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a><br>
+    Product Name: <%= item.name %><br>
+    Brand: <%= item.brand %><br>
+    Product Type: <%= item.product_type %><br>
+    Color: <%= item.product_color %><br><br>
+  <% end %>
+</div>
+
+<div class="align-left">
+  <h2><%= link_to 'Wishlist', '/wishlist' %></h2>
+  <% @wishlist.each do |item| %>
+    <a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a><br>
+    Product Name: <%= item.name %><br>
+    Brand: <%= item.brand %><br>
+    Product Type: <%= item.product_type %><br>
+    Color: <%= item.product_color %><br><br>
+  <% end %>
+</div>
