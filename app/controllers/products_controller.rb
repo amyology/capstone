@@ -14,6 +14,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @options = Product.all.map{ |product| [product.name, product.id] }
   end
 
   def colors

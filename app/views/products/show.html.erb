@@ -18,18 +18,19 @@
       <%= submit_tag 'Add to Traincase' %>
     <% end %>
 
-    Submit dupe:
+    Suggest dupe:
     <%= form_tag '/dupes', method: :post do %>
       <%= hidden_field_tag :primary_id, @product.id %>
-      <%= text_field_tag :secondary_id %>
+      <%= select_tag(:secondary_id, options_for_select(@options)) %>
       <%= submit_tag 'Submit' %>
     <% end %>
+
 
   <% else %>
     <%= link_to 'Sign In', '/users/sign_in' %> or <%= link_to 'Sign Up', '/users/sign_up' %>
   <% end %>
 
-  <h1>Dupes</h1>
+  <h3>Dupes</h3>
 
   <% @product.dupes.each do |item| %>
     <%= link_to "#{item.product.name}", "#{item.product.id}" %>
