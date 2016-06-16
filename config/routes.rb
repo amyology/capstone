@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/wishlist' => 'wishlists#index'
   post '/wishlist' => 'wishlists#create'
 
+  post 'dupes' => 'dupes#create'
   post '/votes' => 'votes#create'
 
 end
