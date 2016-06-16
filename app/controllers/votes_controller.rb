@@ -6,7 +6,6 @@ class VotesController < ApplicationController
       dupe_id: params[:dupe_id]
       )
     flash[:success] = "Vote Added"
-    redirect_to "/"
+    redirect_to request.referer
   end
-
 end
