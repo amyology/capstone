@@ -32,7 +32,7 @@
 
   <h3>Dupes</h3>
 
-  <% @product.dupes.each do |item| %>
+  <% @top_dupes.each do |item| %>
     <%= link_to "#{item.product.name}", "#{item.product.id}" %>
     (<%= item.votes.count %>)
     <%= form_tag '/votes', method: :post do %>
