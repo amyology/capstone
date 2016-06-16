@@ -1,1 +1,9 @@
-User's Traincase
+<h1>Traincase</h1>
+
+<% @traincase.each do |item| %>
+<%= image_tag "#{item.image}", class: 'thumbnail' %><br>
+  Product Name: <%= item.name %><br>
+  Brand: <%= item.brand %><br>
+  Product Type: <%= item.product_type %><br>
+  Color: <%= item.product_color %><br><br>
+<% end %>

@@ -1,7 +1,31 @@
 <div style="text-align: center">
   <%= image_tag "#{@product.image}" %><br>
   <b><%= @product.name.upcase %></b><br>
-  type: <%= @product.product_type %><br>
-  brand: <%= @product.brand %><br>
-  color: <%= @product.product_color %><br>
+  Product Type: <%= @product.product_type %><br>
+  Brand: <%= @product.brand %><br>
+  Color: <%= @product.product_color %><br>
+
+  <% if user_signed_in? %>
+    <%= form_tag '/wishlist', method: :post do %>
+
+      <%= hidden_field_tag :product_id, @product.id %>
+
+      <%= submit_tag 'Add to Wishlist'%>
+    <% end %>
+
+    <%= form_tag '/traincase', method: :post do %>
+
+      <%= hidden_field_tag :product_id, @product.id %>
+
+      <%= submit_tag 'Add to Traincase'%>
+    <% end %>
+
+    Submit dupe:
+    <%= form_tag '/votes' %>
+      <%= hidden_field_tag :product_id, @product_id %>
+    <% end %>
+
+  <% else %>
+    <%= link_to 'Sign In', '/users/sign_in' %> or <%= link_to 'Sign Up', '/users/sign_up' %>
+  <% end %>
 </div>

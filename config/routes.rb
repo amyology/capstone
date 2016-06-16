@@ -10,7 +10,13 @@ Rails.application.routes.draw do
   get '/colors' => 'products#colors'
 
   get '/user' => 'users#index'
+
   get '/traincase' => 'traincases#index'
+  post '/traincase' => 'traincases#create'
+
   get '/wishlist' => 'wishlists#index'
+  post '/wishlist' => 'wishlists#create'
+
+  post '/votes' => 'votes#create'
 
 end

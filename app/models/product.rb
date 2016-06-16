@@ -1,8 +1,10 @@
 class Product < ActiveRecord::Base
 
-  belongs_to :color
-  belongs_to :traincase
-  belongs_to :wishlist
+  has_many :traincases
+  has_many :wishlists
+  has_many :users, through: :wishlists
+  has_many :users, through: :traincases
+  has_many :votes
   has_many :tags
 
 end
