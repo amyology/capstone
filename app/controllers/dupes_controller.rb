@@ -1,12 +1,12 @@
 class DupesController < ApplicationController
 
   def index
-  
+    
   end
 
   def show
-    @dupe = Dupe.find(params[:id])
-    @tags = @dupe.tags
+    dupe = Dupe.find(params[:id])
+    @tags = dupe.tags
   end
 
   def create
@@ -16,6 +16,6 @@ class DupesController < ApplicationController
       )
     flash[:success] = "Dupe Added"
     redirect_to request.referer
-  end
+  end 
 
 end

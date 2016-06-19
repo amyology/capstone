@@ -10,4 +10,5 @@ class Product < ActiveRecord::Base
   has_many :products, through: :dupes
 
   has_many :tags, through: :dupes
+  
 end
