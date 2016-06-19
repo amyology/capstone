@@ -1,12 +1,13 @@
 <h1>Swatch</h1>
 
 <div style="text-align: center">
+
   <%= image_tag "#{@product.image}" %><br>
-  <b><%= @product.name.upcase %></b><br>
+  <h3><%= @product.name.upcase %></h3><br>
   Product Type: <%= @product.product_type %><br>
   Brand: <%= @product.brand %><br>
-  Color: <%= @product.product_color %><br>
-
+  Color: <%= @product.product_color %><br><br>
+    
   <% if user_signed_in? %>
     <%= form_tag '/wishlist', method: :post do %>
       <%= hidden_field_tag :product_id, @product.id %>
@@ -17,6 +18,7 @@
       <%= hidden_field_tag :product_id, @product.id %>
       <%= submit_tag 'Add to Traincase' %>
     <% end %>
+    <br>
 
     Suggest dupe:
     <%= form_tag '/dupes', method: :post do %>
@@ -25,7 +27,6 @@
       <%= submit_tag 'Submit' %>
     <% end %>
 
-
   <% else %>
     <%= link_to 'Sign In', '/users/sign_in' %> or <%= link_to 'Sign Up', '/users/sign_up' %>
   <% end %>
@@ -33,12 +34,28 @@
   <h3>Dupes</h3>
 
   <% @top_dupes.each do |item| %>
-    <%= link_to "#{item.product.name}", "#{item.product.id}" %>
-    (<%= item.votes.count %>)
+
+    <%= link_to "#{item.product.name}", "#{item.product.id}" %> (<%= item.votes.count %>)<br>
+
+    <%= link_to image_tag("#{item.product.image}", class: 'thumbnail'), "#{item.product.id}" %>
+
     <%= form_tag '/votes', method: :post do %>
       <%= hidden_field_tag :dupe_id, item.id %>
       <%= submit_tag 'Vote' %>
     <% end %>
+
+  <b>Tags</b><br>
+  <% item.tags.each do |tag| %>
+    <%= tag.text %>
+  <% end %><br>
+
+  <b>Add a tag:</b><br>
+  <%= form_tag '/tags', method: :post do %>
+    <%= hidden_field_tag :dupe_id, item.id %>      
+    <%= text_field_tag :text %>
+    <%= submit_tag 'Submit' %>
   <% end %>
+
+<% end %>
 
 </div>

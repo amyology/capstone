@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   get '/products/:id' => 'products#show'
 
   get '/colors' => 'products#colors'
-
   get '/user' => 'users#index'
+
+  get '/comparisons' => 'dupes#index'
+  get '/comparisons/:id' => 'dupes#show'
 
   get '/traincase' => 'traincases#index'
   post '/traincase' => 'traincases#create'
@@ -19,5 +21,6 @@ Rails.application.routes.draw do
 
   post '/dupes' => 'dupes#create'
   post '/votes' => 'votes#create'
+  post '/tags' => 'tags#create'
 
 end

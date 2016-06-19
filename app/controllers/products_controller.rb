@@ -14,8 +14,10 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+
     @options = Product.all.map{ |product| [product.name, product.id] }
     @top_dupes = @product.dupes.sort_by { |product| [product.votes.count] }.reverse!.take(5)
+
   end
 
   def colors

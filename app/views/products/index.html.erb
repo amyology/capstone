@@ -1,21 +1,20 @@
 <h1>Products</h1>
 
 <div>
-<% if @searched %>
-  <h2>Results</h2>
-    <% @searched.each do |product| %>
+  <% if @searched %>
+    <h2>Results</h2>
+      <% @searched.each do |product| %>
+        <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a>
+      <% end %>  
+  <% else %>
+    <h2>Recently Added</h2>
+    <% @recent_products.each do |product| %>
       <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a>
     <% end %>  
-<% else %>
-  <h2>All Products</h2>
+
+    <h2>All Products</h2>
     <% @products.each do |product| %>
-    <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a>
-  <% end %>
-<% end %>
-
-
-  <h2>Recently Added</h2>
-  <% @recent_products.each do |product| %>
-    <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a>
+      <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a>
+    <% end %>
   <% end %>
 </div>

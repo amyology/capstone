@@ -1,0 +1,19 @@
+<h3>Products Compared:</h3>
+<%= @dupe.primary_id %>
+<%= @dupe.secondary_id %>
+ 
+<!-- add images -->
+
+<h3>Tags:</h3>
+  <% @tags.each do |tag| %>
+    <%= tag.text %>
+  <% end %>
+
+<!-- vote on tags -->
+
+<h3>Add a tag:</h3>
+  <%= form_tag '/tags', method: :post do %>
+    <%= hidden_field_tag :dupe_id, @dupe.id %>      
+    <%= text_field_tag :text %>
+    <%= submit_tag 'Submit' %>
+  <% end %>
