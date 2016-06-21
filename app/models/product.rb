@@ -1,9 +1,9 @@
 class Product < ActiveRecord::Base
 
-  validates :name, presence: true, length: { maximum: 20 }
-  validates :brand, presence: true, length: { maximum: 40 }
-  validates :product_type, presence: true, length: { maximum: 20 }
-  validates :product_color, presence: true, length: { maximum: 20 }
+  validates :name, presence: true
+  validates :brand, presence: true
+  validates :product_type, presence: true
+  validates :product_color, presence: true
   validates :image, presence: true
 
   has_many :traincases

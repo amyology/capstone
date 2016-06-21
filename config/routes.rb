@@ -5,13 +5,16 @@ Rails.application.routes.draw do
 
   get '/' => 'products#index'
   get '/products' => 'products#index'
-  get '/products/:id' => 'products#show'
 
+  get '/products/new' => 'products#new'
+  post '/products' => 'products#create'
+  get '/products/:id/edit' => 'products#edit'
+  patch '/products/:id' => 'products#update'
+  delete '/products/:id' => 'products#destroy'
+
+  get '/products/:id' => 'products#show'
   get '/colors' => 'products#colors'
   get '/user' => 'users#index'
-
-  get '/comparisons' => 'dupes#index'
-  get '/comparisons/:id' => 'dupes#show'
 
   get '/traincase' => 'traincases#index'
   post '/traincase' => 'traincases#create'
@@ -19,8 +22,17 @@ Rails.application.routes.draw do
   get '/wishlist' => 'wishlists#index'
   post '/wishlist' => 'wishlists#create'
 
+  get '/dupes' => 'dupes#index'
   post '/dupes' => 'dupes#create'
-  post '/votes' => 'votes#create'
-  post '/tags' => 'tags#create'
+  delete '/dupes/:id' => 'dupes#destroy'
 
+  get '/votes' => 'votes#index'
+  post '/votes' => 'votes#create'
+  delete '/votes/:id' => 'votes#destroy'
+
+  get '/tags' => 'tags#index'
+  post '/tags' => 'tags#create'
+  get '/tags/:id/edit' => 'tags#edit'
+  patch '/tags/:id' => 'tags#update'
+  delete '/tags/:id' => 'tags#destroy'
 end

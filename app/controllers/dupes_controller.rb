@@ -1,7 +1,7 @@
 class DupesController < ApplicationController
 
   def index
-    
+    @dupes = Dupe.all
   end
 
   def show
@@ -17,5 +17,21 @@ class DupesController < ApplicationController
     flash[:success] = "Dupe Added"
     redirect_to request.referer
   end 
+
+  def edit
+    @dupe = Dupe.find(params[:id])
+  end
+
+  def update
+
+  end
+
+  def destroy
+    @dupe = Dupe.find(params[:id])
+    @dupe.destroy
+
+    flash[:success] = "Dupe Deleted"
+    redirect_to "/dupes"
+  end
 
 end

@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  
+
+
   def index
     @products = Product.all
     @recent_products = Product.all.sort_by { |product| [product.created_at, product.updated_at].max }.reverse!.take(5)
@@ -9,13 +10,57 @@ class ProductsController < ApplicationController
     if search
       @searched = @products.where("name ILIKE ? OR brand ILIKE ? OR product_color ILIKE ? OR product_type ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
     end
-
   end
 
   def show
     @product = Product.find(params[:id])
     @options = Product.all.map { |product| [product.name, product.id] }
     @top_dupes = @product.dupes.sort_by { |product| [product.votes.count] }.reverse!.take(5)
+  end
+
+  def new
+    
+  end
+
+  def create
+    @product = Product.create(
+      name: params[:name],
+      brand: params[:brand],
+      finish: params[:finish],
+      undertone: params[:undertone],
+      product_type: params[:product_type],
+      product_color: params[:product_color],
+      image: params[:image]
+      )
+    flash[:success] = "Product Added"
+    redirect_to "/products/#{@product.id}"
+  end
+
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    @product.update(
+      name: params[:name],
+      brand: params[:brand],
+      finish: params[:finish],
+      undertone: params[:undertone],
+      product_type: params[:product_type],
+      product_color: params[:product_color],
+      image: params[:image]
+      )
+    flash[:success] = "Product Added"
+    redirect_to "/products/#{@product.id}"
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+
+    flash[:success] = "Product Deleted"
+    redirect_to "/"
   end
 
   def colors

@@ -29,36 +29,38 @@
 
   <% else %>
     <%= link_to 'Sign In', '/users/sign_in' %> or <%= link_to 'Sign Up', '/users/sign_up' %>
-  <% end %>
-
-  <br> 
+  <% end %>  <br> 
 
   <h2>Dupes</h2>
-
   <% @top_dupes.each do |item| %>
-
-    <%= link_to "#{item.product.name}", "#{item.product.id}" %> (<%= item.votes.count %>)<br>
-
+    <b><%= link_to "#{item.product.name.upcase}", "#{item.product.id}" %></b> (<%= item.votes.count %>)<br>
     <%= link_to image_tag("#{item.product.image}", class: 'thumbnail'), "#{item.product.id}" %>
-
     <%= form_tag '/votes', method: :post do %>
       <%= hidden_field_tag :dupe_id, item.id %>
-      <%= submit_tag 'Vote' %>
+      Dupe? <%= submit_tag 'Yes' %>
     <% end %>
 
-  <b>Tags</b> <br>
-  <% item.tags.select(:text).group(:text).having("count(*) >= 1").take(5).each do |tag| %>
-    <%= tag.text %>.
-  <% end %> <br>
+    <% if user_signed_in? %>
+      <%= form_tag '/tags', method: :post do %>
+        <%= hidden_field_tag :dupe_id, item.id %>      
+        <b>Add a tag:</b> <%= text_field_tag :text %> <%= submit_tag 'Submit' %>
+      <% end %>
+    <% end %> <br>
 
-  <b>Add a tag:</b> <br>
-  <%= form_tag '/tags', method: :post do %>
-    <%= hidden_field_tag :dupe_id, item.id %>      
-    <%= text_field_tag :text %>
-    <%= submit_tag 'Submit' %>
+    <b>Tags:</b> <br>
+    <% if item.tags.length == 0 %>
+      None. <br><br>
+    <% else %>
+      <% item.tags.select(:text).group(:text).having("count(*) >= 1").take(5).each do |tag| %>
+        <%= tag.text %>.
+    <% end %> <br><br>
+
+    <% end %>
   <% end %>
-  <br><br>
 
-<% end %>
+  <% if user_signed_in? && current_user.admin %>
+    <%= link_to "Edit", "/products/#{@product.id}/edit" %> |
+    <%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
+  <% end %>
 
 </div>
