@@ -1,5 +1,8 @@
 class DupesController < ApplicationController
 
+  before_action :authenticate_admin!, only: [:index, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create]
+
   def index
     @dupes = Dupe.all
   end

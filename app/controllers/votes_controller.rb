@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
 
+  before_action :authenticate_admin!, only: [:index, :destroy]
   
   def index
     @votes = Vote.all

@@ -1,5 +1,7 @@
 class TagsController < ApplicationController
 
+  before_action :authenticate_admin!, only: [:index, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create]
 
   def index
     @tags = Tag.all

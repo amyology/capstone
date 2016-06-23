@@ -1,5 +1,7 @@
 class TraincasesController < ApplicationController
   
+  before_action :authenticate_user!
+
   def index
     @traincase = current_user.owned_products
   end
