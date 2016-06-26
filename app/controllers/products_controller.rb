@@ -2,6 +2,12 @@ class ProductsController < ApplicationController
 
   before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
+  def colorthief
+  end
+
+  def vibrant
+  end
+
   def index
     @products = Product.all
     @recent_products = Product.all.sort_by { |product| [product.created_at, product.updated_at].max }.reverse!.take(5)
