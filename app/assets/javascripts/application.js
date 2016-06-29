@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require Vibrant
+//= require quantize
+//= require color-thief
 //= require_tree .

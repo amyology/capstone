@@ -2,10 +2,10 @@ class ProductsController < ApplicationController
 
   before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
-  def colorthief
+  def vibrant
   end
 
-  def vibrant
+  def colorthief
   end
 
   def index

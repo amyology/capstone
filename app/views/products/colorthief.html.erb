@@ -1,12 +1,24 @@
-<img src="/assets/shiro_tardis.jpg" id="myImage">
-<div class="dominant"><p>Color 1</p></div>
-<div class="palette">
-  <div id="colorBox"><p id="colorLabel">Color 2</p></div>
-  <div id="colorBox"><p id="colorLabel">Color 3</p></div>
-  <div id="colorBox"><p id="colorLabel">Color 4</p></div>
-  <div id="colorBox"><p id="colorLabel">Color 5</p></div>
-  <div id="colorBox"><p id="colorLabel">Color 6</p></div>
-  <div id="colorBox"><p id="colorLabel">Color 7</p></div>
-  <div id="colorBox"><p id="colorLabel">Color 8</p></div>
-  <div id="colorBox"><p id="colorLabel">Color 9</p></div>
-</div>
+<img src="assets/shiro_tardis.jpg" class="target-image">
+<div class="swatch-box" id="swatch"> </div>
+
+<script type="text/javascript">
+
+var image = document.querySelector('.target-image');
+image.onload = function(){
+  var colorThief = new ColorThief();
+  var color = colorThief.getColor(image); 
+
+  var palette = colorThief.getPalette(image);
+  console.log(palette);
+
+  document.getElementById("swatch").style["background-color"] = 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')';
+};
+
+// var image = new Image;
+// image.onload = function() {
+//     var colorThief = new ColorThief();
+//     var dominantColor = colorThief.getColor(image);
+// };
+// image.src = "assets/shiro_tardis.jpg";
+
+</script>
