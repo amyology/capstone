@@ -3,7 +3,6 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :brand, presence: true
   validates :product_type, presence: true
-  validates :product_color, presence: true
   validates :image, presence: true
 
   has_many :traincases
@@ -16,5 +15,7 @@ class Product < ActiveRecord::Base
   has_many :products, through: :dupes
 
   has_many :tags, through: :dupes
+
+  belongs_to :color
   
 end

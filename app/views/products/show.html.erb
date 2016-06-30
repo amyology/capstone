@@ -2,11 +2,10 @@
 
 <div style="text-align: center">
 
-  <%= image_tag "#{@product.image}" %><br>
+  <%= image_tag "#{@product.image}", class: 'target-image' %><br>
   <h3><%= @product.name.upcase %></h3><br>
   Product Type: <%= @product.product_type %><br>
-  Brand: <%= @product.brand %><br>
-  Color: <%= @product.product_color %><br><br>
+  Brand: <%= @product.brand %><br><br>
     
   <% if user_signed_in? %>
     <%= form_tag '/wishlist', method: :post do %>
@@ -31,30 +30,34 @@
     <%= link_to 'Sign In', '/users/sign_in' %> or <%= link_to 'Sign Up', '/users/sign_up' %>
   <% end %>  <br> 
 
-  <h2>Dupes</h2>
-  <% @top_dupes.each do |item| %>
-    <b><%= link_to "#{item.product.name.upcase}", "#{item.product.id}" %></b> (<%= item.votes.count %>)<br>
-    <%= link_to image_tag("#{item.product.image}", class: 'thumbnail'), "#{item.product.id}" %>
-    <%= form_tag '/votes', method: :post do %>
-      <%= hidden_field_tag :dupe_id, item.id %>
-      Dupe? <%= submit_tag 'Yes' %>
-    <% end %>
-
-    <% if user_signed_in? %>
-      <%= form_tag '/tags', method: :post do %>
-        <%= hidden_field_tag :dupe_id, item.id %>      
-        <b>Add a tag:</b> <%= text_field_tag :text %> <%= submit_tag 'Submit' %>
+  <% if @top_dupes.length > 0 %>
+    <h2>Dupes</h2>
+    <% @top_dupes.each do |item| %>
+      <b><%= link_to "#{item.product.name.upcase}", "#{item.product.id}" %></b> (<%= item.votes.count %>)<br>
+      <%= link_to image_tag("#{item.product.image}", class: 'thumbnail'), "#{item.product.id}" %>
+      <% if user_signed_in? %>
+        <%= form_tag '/votes', method: :post do %>
+          <%= hidden_field_tag :dupe_id, item.id %>
+          Dupe? <%= submit_tag 'Yes' %>
+        <% end %>
       <% end %>
-    <% end %> <br>
 
-    <b>Tags:</b> <br>
-    <% if item.tags.length == 0 %>
-      None. <br><br>
-    <% else %>
-      <% item.tags.select(:text).group(:text).having("count(*) >= 1").take(5).each do |tag| %>
-        <%= tag.text %>.
-    <% end %> <br><br>
+      <% if user_signed_in? %>
+        <%= form_tag '/tags', method: :post do %>
+          <%= hidden_field_tag :dupe_id, item.id %>      
+          <b>Add a tag:</b> <%= text_field_tag :text %> <%= submit_tag 'Submit' %>
+        <% end %>
+      <% end %> <br>
 
+      <b>Tags:</b> <br>
+      <% if item.tags.length == 0 %>
+        None. <br><br>
+      <% else %>
+        <% item.tags.select(:text).group(:text).having("count(*) >= 1").take(5).each do |tag| %>
+          <%= tag.text %>.
+      <% end %> <br><br>
+
+      <% end %>
     <% end %>
   <% end %>
 
@@ -64,3 +67,13 @@
   <% end %>
 
 </div>
+
+
+<script type="text/javascript">
+  var image = document.querySelector('.target-image');
+  image.onload = function(){
+    var colorThief = new ColorThief();
+    var color = colorThief.getColor(image); 
+    console.log(color);
+  };
+</script>

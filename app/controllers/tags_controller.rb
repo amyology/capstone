@@ -28,6 +28,7 @@ class TagsController < ApplicationController
       dupe_id: params[:dupe_id],
       text: params[:text]
       )
+    redirect_to "/tags/#{@tag.id}"
   end
 
   def destroy

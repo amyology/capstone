@@ -1,78 +1,9 @@
 <h1>Colors</h1>
-
-<div class="align-left">
-  <h2>Red</h2>
-  <% @red.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
-
-<div class="align-left">
-  <h2>Peach</h2>
-  <% @peach.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
-
-<div class="align-left">
-  <h2>Orange</h2>
-  <% @orange.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
-
-<div class="align-left">
-  <h2>Green</h2>
-  <% @green.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
-
-<div class="align-left">
-  <h2>Blue</h2>
-  <% @blue.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
-
-<div class="align-left">
-  <h2>Purple</h2>
-  <% @purple.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
-
-<div class="align-left">
-  <h2>White</h2>
-  <% @white.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
-
-<div class="align-left">
-  <h2>Black</h2>
-  <% @black.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
-
-<div class="align-left">
-  <h2>Gold</h2>
-  <% @gold.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
-
-<div class="align-left">
-  <h2>Silver</h2>
-  <% @silver.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
-
-<div class="align-left">
-  <h2>Bronze</h2>
-  <% @bronze.each do |color| %>
-    <div class="swatch-box" style="background-color:<%= color.value %>"> </div> <br>
-  <% end %>
-</div>
+<% @colors.each do |color| %>
+  <%= color.id %>: 
+  <%= color.red %>
+  <%= color.green %>
+  <%= color.blue %>
+  <%= link_to "Edit", "/colors/#{color.id}/edit" %> |
+  <%= link_to "Delete", "/colors/#{color.id}", method: :delete %><br><br>
+<% end %>

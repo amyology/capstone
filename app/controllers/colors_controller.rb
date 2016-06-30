@@ -1,21 +1,44 @@
 class ColorsController < ApplicationController
 
   def index
-    @green = Color.where(name: "green")
-    @red = Color.where(name: "red")
-    @orange = Color.where(name: "orange")
-    @purple = Color.where(name: "purple")
-    @blue = Color.where(name: "blue")
-    @gold = Color.where(name: "gold")
-    @silver = Color.where(name: "silver")
-    @bronze = Color.where(name: "bronze")
-    @peach = Color.where(name: "peach")
-    @white = Color.where(name: "white")
-    @black = Color.where(name: "black")
+    @colors = Color.all
   end
 
   def show
-    @color = Color.where(name: params[:color])
+    @color = Color.find(params[:id])
+  end
+
+  def create
+    @color = Color.create(
+      red: params[:red],
+      green: params[:green],
+      blue: params[:blue]
+      )
+    flash[:success] = "Color Added"
+    redirect_to request.referer
+  end
+
+  def edit
+    @color = Color.find(params[:id])
+  end
+
+  def update
+    @color = Color.find(params[:id])
+    @color.update(
+      red: params[:red],
+      green: params[:green],
+      blue: params[:blue]
+      )
+    flash[:success] = "Color Updated"
+    redirect_to request.referer
+  end
+
+  def destroy
+    @color = Color.find(params[:id])
+    @color.destroy
+
+    flash[:success] = "Color Deleted"
+    redirect_to "/colors"
   end
 
 end

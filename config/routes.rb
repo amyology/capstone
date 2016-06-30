@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   delete '/products/:id' => 'products#destroy'
 
   get '/products/:id' => 'products#show'
-  get '/colors' => 'products#colors'
   get '/user' => 'users#index'
 
   get '/traincase' => 'traincases#index'
@@ -38,4 +37,11 @@ Rails.application.routes.draw do
   get '/tags/:id/edit' => 'tags#edit'
   patch '/tags/:id' => 'tags#update'
   delete '/tags/:id' => 'tags#destroy'
+
+  get '/colors' => 'colors#index'
+  get '/colors/:id' => 'colors#show'
+  post '/colors' => 'colors#create'
+  get '/colors/:id/edit' => 'colors#edit'
+  patch '/colors/:id' => 'colors#update'
+  delete 'colors/:id' => 'colors#destroy'
 end
