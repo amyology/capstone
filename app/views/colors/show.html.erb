@@ -1,4 +1,14 @@
+<h1>Possible Dupes</h1>
+
 <% @color.products.each do |product| %>
-  <%= product.id %>
-  <%= product.name %>
+  <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
+<% end %>
+
+<br><br>
+
+<% @matches.each do |match| %>
+  <%= match.red %>, <%= match.green %>, <%= match.blue %><br>
+  <% match.products.each do |product| %>
+    <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
+  <% end %>
 <% end %>

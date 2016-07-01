@@ -5,7 +5,8 @@
   <%= image_tag "#{@product.image}", class: 'target-image' %><br>
   <h3><%= @product.name.upcase %></h3><br>
   Product Type: <%= @product.product_type %><br>
-  Brand: <%= @product.brand %><br><br>
+  Brand: <%= @product.brand %>
+  <br><br>
     
   <% if user_signed_in? %>
     <%= form_tag '/wishlist', method: :post do %>
@@ -17,9 +18,18 @@
       <%= hidden_field_tag :product_id, @product.id %>
       <%= submit_tag 'Add to Traincase' %>
     <% end %>
-    <br>
+    <br><br>
 
-    Suggest dupe:
+  <h2>Possible Dupes</h2>
+  <% @matches.each do |match| %>
+    <% match.products.each do |product| %>
+      <%= product.name %><br>
+      <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
+    <% end %>
+  <% end %>
+  <br><br>
+
+    Suggest a dupe:
     <%= form_tag '/dupes', method: :post do %>
       <%= hidden_field_tag :primary_id, @product.id %>
       <%= select_tag(:secondary_id, options_for_select(@options)) %>

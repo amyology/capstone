@@ -10,7 +10,6 @@
 
 <div>
   <%= link_to 'Home', '/' %>
-  <%= link_to 'Colors', '/colors' %>
   <% if user_signed_in? %>
     <%= link_to 'Profile', '/user' %>   
     <%= link_to 'Sign Out', '/users/sign_out', method: :delete %>

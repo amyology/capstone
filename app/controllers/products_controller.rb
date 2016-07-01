@@ -23,6 +23,12 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @options = Product.all.map { |product| [product.name, product.id] }
     @top_dupes = @product.dupes.sort_by { |product| [product.votes.count] }.reverse!.take(5)
+
+    @color = Color.find(@product.color_id)
+    @matches = Color.where.not('red = ? AND green = ? AND blue = ?', @color.red, @color.green, @color.blue).
+    where('red BETWEEN ? AND ?', @color.red - 45, @color.red + 45).
+    where('green BETWEEN ? AND ?', @color.green - 45, @color.green + 45).
+    where('blue BETWEEN ? AND ?', @color.blue - 45, @color.blue + 45).take(3)
   end
 
   def new

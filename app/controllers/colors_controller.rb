@@ -6,6 +6,10 @@ class ColorsController < ApplicationController
 
   def show
     @color = Color.find(params[:id])
+    @matches = Color.where.not('red = ? AND green = ? AND blue = ?', @color.red, @color.green, @color.blue).
+    where('red BETWEEN ? AND ?', @color.red - 45, @color.red + 45).
+    where('green BETWEEN ? AND ?', @color.green - 45, @color.green + 45).
+    where('blue BETWEEN ? AND ?', @color.blue - 45, @color.blue + 45).take(3)
   end
 
   def create
