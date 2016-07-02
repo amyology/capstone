@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     search = params[:search]
 
     if search
-      @searched = @products.where("name ILIKE ? OR brand ILIKE ? OR product_color ILIKE ? OR product_type ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+      @searched = @products.where("name ILIKE ? OR brand ILIKE ? OR product_type ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
     end
   end
 

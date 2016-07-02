@@ -1,9 +1,29 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+$default-font: 'Raleway', sans-serif;
+$default-font-color: #0a0a0a;
+$light-gray: #e6e6e6;
+$dark-gray: #8a8a8a;
+
+body {
+  background-image: url("bg.gif");
+  color: $default-font-color;
+  font-family: $default-font;
+}
+
+h1, h2, h3, h4 {
+  font-family: $default-font;
+}
+
+.callout {
+  text-align: center;
+}
+
 .swatch-box {
   width: 50px;
   height: 50px;
   float: left;
   margin: 1px;
-  }
+} 
 
 .align-left {
   float: left;
@@ -14,3 +34,124 @@
   width: 100px;
   height: 100px;
 }
+
+input[type=text] {
+  border: 3px solid $light-gray;
+}
+
+input[type=text]:focus {
+  border: 3px solid $dark-gray;
+}
+
+//start top bar
+$menu-background: #FF6D88;
+$menu-line: #D25A70;
+
+.title-bar {
+  background: $menu-background;
+  padding: 0.9rem;
+}
+
+.top-bar {
+  background: $menu-background;
+  
+  ul {
+    background: $menu-background;
+  
+    li {
+      background: $menu-background;
+    
+        a {
+          color: #333;
+      }
+        a:hover {
+          color: #fff
+        }
+    }
+  }
+}
+
+.menu-text {
+  color: #333;
+  
+  @media only screen and (max-width: 40em) {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 40em) {
+  .menu:last-child {
+    border-left: 1px solid $menu-line;
+  }
+
+  .menu:first-child {
+    border-left: none;
+  }
+
+  .menu {
+    li:not(:last-child) {
+      border-right: 1px solid $menu-line;
+    }
+  }
+}
+
+.dropdown.menu .submenu {
+  border: none;
+}
+
+.dropdown.menu .is-dropdown-submenu-parent.is-right-arrow>a::after {
+  border-color: #fff transparent transparent;
+}
+
+.is-drilldown-submenu-parent>a::after {
+  border-color: transparent transparent transparent #fff;
+}
+
+.js-drilldown-back::before {
+  border-color: transparent #fff transparent transparent;
+}
+
+.off-canvas-content {
+  box-shadow: unset;
+  background: transparent;
+}
+//end top bar
+
+//start footer
+.footer {
+  background-color: $menu-background;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 1.5rem;
+  p {
+    &.slogan {
+      color: $default-font-color;
+      font-size: 1.8rem;
+      margin: 0 0 1rem;
+    }
+    &.copywrite {
+      color: $default-font-color;
+      font-size: 0.875rem;
+      margin: 0;
+    }
+  }
+  .links a {
+    list-style: none;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 3rem 0 2rem;
+    margin: 0;
+    &::after {
+      content: "•";
+      padding: 0 0.4rem 0 0.8rem;
+    }
+    &:last-child::after {
+      content: "";
+      padding: 0 0.4rem 0 0.8rem;
+    }
+  }
+  .links a:hover {
+    color: $menu-line;
+  }
+}
+//end footer

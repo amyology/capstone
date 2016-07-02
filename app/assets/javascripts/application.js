@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require Vibrant
 //= require quantize
 //= require color-thief
 //= require_tree .
+
+$(function(){ $(document).foundation(); });

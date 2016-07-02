@@ -1,8 +1,16 @@
 <h1>Wishlist</h1>
 
+<div class="row small-up-1 medium-up-2 large-up-3">
+
 <% @products.each do |item| %>
-  <a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a><br>
-  Product Name: <%= item.name %><br>
-  Brand: <%= item.brand %><br>
-  Product Type: <%= item.product_type %><br><br>
+  <div class="column">
+    <div class="callout">
+      <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a></p>
+      <p>Product Name: <%= item.name %><br>
+      Brand: <%= item.brand %><br>
+      Product Type: <%= item.product_type %></p>
+    </div>
+  </div>
 <% end %>
+
+</div>
