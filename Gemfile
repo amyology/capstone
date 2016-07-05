@@ -25,6 +25,8 @@ gem 'devise', '~> 3.5', '>= 3.5.6'
 
 gem 'foundation-rails', '~> 6.2', '>= 6.2.3.0'
 
+gem "jquery-slick-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

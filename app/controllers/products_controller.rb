@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
       color_id: params[:color_id],
       image: params[:image]
       )
-    flash[:success] = "Product Added"
+    flash[:success] = "Product Updated"
     redirect_to "/products/#{@product.id}"
   end
 

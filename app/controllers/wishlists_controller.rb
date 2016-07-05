@@ -3,7 +3,7 @@ class WishlistsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @products = current_user.products
+    @products = current_user.products.reverse
   end
 
   def create

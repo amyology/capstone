@@ -4,11 +4,10 @@
 
 <% @products.each do |item| %>
   <div class="column">
-    <div class="callout">
+    <div class="callout product-box">
       <p><a href="/products/<%= item.id %>"><%= image_tag "#{item.image}", class: 'thumbnail' %></a></p>
-      <p>Product Name: <%= item.name %><br>
-      Brand: <%= item.brand %><br>
-      Product Type: <%= item.product_type %></p>
+      <p class="lead">Product Name: <%= item.name %></p>
+      <p class="subheader"><%= item.brand %></p>
     </div>
   </div>
 <% end %>

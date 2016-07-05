@@ -17,27 +17,24 @@
   <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
   
     <!-- off-canvas title bar for 'small' screen -->
-    <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
+    <div class="title-bar" data-responsive-toggle="widemenu" data-responsive-toggle="nav-menu" data-hide-for="medium">
       <div class="title-bar-left">
-        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
         <span class="title-bar-title" style="font-size: 1.5rem"><%= link_to 'ColorCrush', '/', {:style => "color: #fff"} %></span>
       </div>
       <div class="title-bar-right">
-        <span class="title-bar-title">Login</span>
+        <span class="title-bar-title">
+          <% if user_signed_in? %>
+            Profile
+          <% else %>
+            Sign in
+          <% end %>
+        </span>
         <button class="menu-icon" type="button" data-open="offCanvasRight"></button>
       </div>
     </div>
 
-    <!-- off-canvas left menu -->
-    <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
-      <ul class="vertical dropdown menu" data-dropdown-menu>
-        <li><a href="left_item_1">Left item 1</a></li>
-        <li><a href="left_item_2">Left item 2</a></li>
-        <li><a href="left_item_3">Left item 3</a></li>
-      </ul>
-    </div>
-
     <!-- off-canvas right menu -->
+  <nav class="top-bar" id="nav-menu">
     <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
       <ul class="vertical dropdown menu" data-dropdown-menu>
         <% if user_signed_in? %>
@@ -55,26 +52,23 @@
     <!-- "wider" top-bar menu for 'medium' and up -->
     <div id="widemenu" class="top-bar">
       <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text" style="font-size: 1.5rem"><%= link_to 'ColorCrush', '/', {:style => "color: #fff"} %></li>
-          <li class="has-submenu">
-            <a href="#">Item 1</a>
-            <ul class="menu submenu vertical" data-submenu>
-              <li><a href="left_wide_11">Left wide 1</a></li>
-              <li><a href="left_wide_12">Left wide 2</a></li>
-              <li><a href="left_wide_13">Left wide 3</a></li>
-            </ul>
-          </li>
-          <li class="has-submenu">
-            <a href="#">Item 2</a>
-            <ul class="menu submenu vertical" data-submenu>
-              <li><a href="left_wide_21">Left wide 1</a></li>
-              <li><a href="left_wide_22">Left wide 2</a></li>
-              <li><a href="left_wide_23">Left wide 3</a></li>
-            </ul>
-          </li>
+        <ul class="menu">
+          <li class="menu-text"><%= form_tag '/', method: :get do %>
+          <%= text_field_tag :search, nil, placeholder: "Search for products" %></li>
+          <li><%= submit_tag "Search", class: 'button secondary' %>
+        <% end %></li>
         </ul>
+<!--         <ul class="menu">
+          <li class="menu-text" style="font-size: 1.5rem"><%= link_to 'ColorCrush', '/', {:style => "color: #fff"} %></li>
+        </ul> -->
+      </div>  
+
+      <div class="logo-wrapper hide-for-small-only">
+        <div class="logo">
+          <a href="/"><img src="http://placehold.it/350x150?text=LOGO"></a>
+        </div>
       </div>
+
       <div class="top-bar-right">
         <ul class="dropdown menu" data-dropdown-menu>
           <li class="has-submenu">
@@ -96,25 +90,31 @@
             </ul>
           </li>
         </ul>
+
       </div>
     </div>
+  </nav>
 
     <!-- original content goes in this container -->
     <div class="off-canvas-content" data-off-canvas-content>
       <div class="row column">
 
-        <br>
-
-        <%= form_tag '/', method: :get do %>
-          <%= text_field_tag :search, nil, placeholder: "Search for products" %><%= submit_tag "Search", class: 'button secondary' %>
-        <% end %>
-
-
-        <div>
-          <% flash.each do |name, message| %>
-            <%= message.upcase %>
+        <div class="show-for-small-only">
+          <br>
+          <%= form_tag '/', method: :get do %>
+            <%= text_field_tag :search, nil, placeholder: "Search for products" %>
+            <%= submit_tag "Search", class: 'button' %>
           <% end %>
         </div>
+
+        <br>
+
+        <% flash.each do |name, message| %>
+          <div data-alert class="alert-box secondary center">
+            <%= message.upcase %>
+            <a href="#" class="close">&times;</a>
+          </div>
+        <% end %>
 
         <br>
 

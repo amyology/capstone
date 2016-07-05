@@ -1,89 +1,106 @@
-<h1>Swatch</h1>
+<div class="row" style="text-align: center">
 
-<div style="text-align: center">
+  <p><span class="lead" style="font-size: 2rem"><%= @product.name.upcase %></span> 
+    <br> <%= @product.brand %></p>
+  <%= image_tag "#{@product.image}", class: 'target-image' %>
 
-  <%= image_tag "#{@product.image}", class: 'target-image' %><br>
-  <h3><%= @product.name.upcase %></h3><br>
-  Product Type: <%= @product.product_type %><br>
-  Brand: <%= @product.brand %>
   <br><br>
     
   <% if user_signed_in? %>
-    <%= form_tag '/wishlist', method: :post do %>
-      <%= hidden_field_tag :product_id, @product.id %>
-      <%= submit_tag 'Add to Wishlist' %>
-    <% end %>
-
-    <%= form_tag '/traincase', method: :post do %>
-      <%= hidden_field_tag :product_id, @product.id %>
-      <%= submit_tag 'Add to Traincase' %>
-    <% end %>
-    <br><br>
-
-  <h2>Possible Dupes</h2>
-  <% @matches.each do |match| %>
-    <% match.products.each do |product| %>
-      <%= product.name %><br>
-      <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
-    <% end %>
-  <% end %>
-  <br><br>
-
-    Suggest a dupe:
-    <%= form_tag '/dupes', method: :post do %>
-      <%= hidden_field_tag :primary_id, @product.id %>
-      <%= select_tag(:secondary_id, options_for_select(@options)) %>
-      <%= submit_tag 'Submit' %>
-    <% end %>
-
+    <div style="text-align: left; width: 15%" class="search-box">
+      <%= form_tag '/wishlist', method: :post do %>
+        <%= hidden_field_tag :product_id, @product.id %>
+        <%= image_submit_tag('/assets/heart.gif') %> Add to Wishlist<br>
+      <% end %>
+      <%= form_tag '/traincase', method: :post do %>
+        <%= hidden_field_tag :product_id, @product.id %>
+        <%= image_submit_tag('/assets/case.gif') %> Add to Traincase<br>
+      <% end %>
+    </div>
   <% else %>
-    <%= link_to 'Sign In', '/users/sign_in' %> or <%= link_to 'Sign Up', '/users/sign_up' %>
-  <% end %>  <br> 
-
-  <% if @top_dupes.length > 0 %>
-    <h2>Dupes</h2>
-    <% @top_dupes.each do |item| %>
-      <b><%= link_to "#{item.product.name.upcase}", "#{item.product.id}" %></b> (<%= item.votes.count %>)<br>
-      <%= link_to image_tag("#{item.product.image}", class: 'thumbnail'), "#{item.product.id}" %>
-      <% if user_signed_in? %>
-        <%= form_tag '/votes', method: :post do %>
-          <%= hidden_field_tag :dupe_id, item.id %>
-          Dupe? <%= submit_tag 'Yes' %>
-        <% end %>
-      <% end %>
-
-      <% if user_signed_in? %>
-        <%= form_tag '/tags', method: :post do %>
-          <%= hidden_field_tag :dupe_id, item.id %>      
-          <b>Add a tag:</b> <%= text_field_tag :text %> <%= submit_tag 'Submit' %>
-        <% end %>
-      <% end %> <br>
-
-      <b>Tags:</b> <br>
-      <% if item.tags.length == 0 %>
-        None. <br><br>
-      <% else %>
-        <% item.tags.select(:text).group(:text).having("count(*) >= 1").take(5).each do |tag| %>
-          <%= tag.text %>.
-      <% end %> <br><br>
-
-      <% end %>
-    <% end %>
-  <% end %>
-
-  <% if user_signed_in? && current_user.admin %>
-    <%= link_to "Edit", "/products/#{@product.id}/edit" %> |
-    <%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
+    <p><%= link_to 'Sign In', '/users/sign_in' %> to add to Traincase or Wishlist</p>
   <% end %>
 
 </div>
 
+<div class="row"> <hr> </div>
 
-<script type="text/javascript">
-  var image = document.querySelector('.target-image');
-  image.onload = function(){
-    var colorThief = new ColorThief();
-    var color = colorThief.getColor(image); 
-    console.log(color);
-  };
-</script>
+<div class="row small-up-1 medium-up-2 large-up-3">
+  <div style="text-align: center" class="lead"><span style="font-size: 2rem">Possible Dupes</span></div>
+  <% @matches.each do |match| %>
+    <% match.products.each do |product| %>
+      <div class="column">
+        <div class="callout">
+          <%= product.name %><br>
+          <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a><br>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
+
+  <% if user_signed_in? %>
+    <div class="callout search-box">
+      Suggest a dupe:
+      <%= form_tag '/dupes', method: :post do %>
+        <%= hidden_field_tag :primary_id, @product.id %>
+        <%= select_tag(:secondary_id, options_for_select(@options)) %>
+        <%= submit_tag 'Submit', class: 'button' %>
+      <% end %>
+    </div>
+  <% end %>  <br> 
+
+<div class="row small-up-1 medium-up-2 large-up-3">
+  <% if @top_dupes.length > 0 %>
+    <hr>
+    <h2>Dupes</h2>
+    <% @top_dupes.each do |item| %>
+      <div class="column">
+        <div class="callout">
+          <b><%= link_to "#{item.product.name.upcase}", "#{item.product.id}" %></b> <br>
+          <%= link_to image_tag("#{item.product.image}", class: 'thumbnail'), "#{item.product.id}" %> <br>
+            <% if item.votes.count > 0 %>
+              <%= item.votes.count %> people think <%= item.product.name %> is a dupe.<br>
+            <% end %>
+          Is <%= item.product.name %> a dupe?
+          <% if user_signed_in? %>
+            <%= form_tag '/votes', method: :post do %>
+              <%= hidden_field_tag :dupe_id, item.id %> 
+              <%= submit_tag 'Yes' %><br>
+            <% end %>
+          <% else %>
+            <%= link_to 'Sign In', '/users/sign_in' %> to vote.
+          <% end %>
+
+          <br><br>
+
+          <b><%= item.product.name %></b> is <br>
+          <% if item.tags.length != 0 %>
+            <% item.tags.select(:text).group(:text).having("count(*) >= 1").take(5).each do |tag| %>
+              <%= tag.text %> &nbsp; 
+            <% end %> <br> than <b><%= @product.name %></b><br><br>
+          <% end %>
+
+          <% if user_signed_in? %>
+            <%= form_tag '/tags', method: :post do %>
+              <%= hidden_field_tag :dupe_id, item.id %>      
+              What do you think? <%= text_field_tag :text %> <%= submit_tag 'Submit' %>
+            <% end %>
+          <% else %>
+            <%= link_to 'Sign In', '/users/sign_in' %> to add tags.
+          <% end %> <br>
+
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<% if user_signed_in? && current_user.admin %>
+  <div class="search-box callout">
+    <b>Admin Functions</b><br>
+    <%= link_to "Edit", "/products/#{@product.id}/edit" %> |
+    <%= link_to "Delete", "/products/#{@product.id}", method: :delete %>
+  </div>
+<% end %>

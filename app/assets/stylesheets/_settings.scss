@@ -262,7 +262,7 @@ $buttongroup-expand-max: 6;
 
 $callout-background: $white;
 $callout-background-fade: 85%;
-$callout-border: 1px solid rgba($black, 0.25);
+$callout-border: 3px solid rgba($black, 0.05);
 $callout-margin: 0 0 1rem 0;
 $callout-padding: 1rem;
 $callout-font-color: $body-font-color;
@@ -348,10 +348,10 @@ $input-font-size: rem-calc(16);
 $input-background: $white;
 $input-background-focus: $white;
 $input-background-disabled: $light-gray;
-$input-border: 1px solid $medium-gray;
-$input-border-focus: 1px solid $dark-gray;
-$input-shadow: inset 0 1px 2px rgba($black, 0.1);
-$input-shadow-focus: 0 0 5px $medium-gray;
+$input-border: 3px solid $light-gray;
+$input-border-focus: 3px solid $dark-gray;
+$input-shadow: none;
+$input-shadow-focus: none;
 $input-cursor-disabled: not-allowed;
 $input-transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
 $input-number-spinners: true;
@@ -524,11 +524,15 @@ $tab-content-padding: 1rem;
 // 33. Thumbnail
 // -------------
 
-$thumbnail-border: solid 4px $white;
+//$thumbnail-border: solid 4px $white;
+$thumbnail-border: 0;
 $thumbnail-margin-bottom: $global-margin;
-$thumbnail-shadow: 0 0 0 1px rgba($black, 0.2);
-$thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
-$thumbnail-transition: box-shadow 200ms ease-out;
+//$thumbnail-shadow: 0 0 0 1px rgba($black, 0.2);
+$thumbnail-shadow: 0;
+//$thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
+$thumbnail-shadow-hover: 0;
+//$thumbnail-transition: box-shadow 200ms ease-out;
+$thumbnail-transition: 0;
 $thumbnail-radius: $global-radius;
 
 // 34. Title Bar

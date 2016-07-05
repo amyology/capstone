@@ -14,20 +14,17 @@ h1, h2, h3, h4 {
   font-family: $default-font;
 }
 
-.callout {
+hr {
+  border-width: 3px;
+  margin: 5px;
+}
+
+.center {
   text-align: center;
 }
 
-.swatch-box {
-  width: 50px;
-  height: 50px;
-  float: left;
-  margin: 1px;
-} 
-
-.align-left {
-  float: left;
-  margin: 10px;
+.callout {
+  text-align: center;
 }
 
 .thumbnail {
@@ -35,13 +32,28 @@ h1, h2, h3, h4 {
   height: 100px;
 }
 
-input[type=text] {
-  border: 3px solid $light-gray;
+.lead {
+  margin: 5px;
 }
 
-input[type=text]:focus {
-  border: 3px solid $dark-gray;
+.search-box {
+  width: 25%;
+  margin: auto;
 }
+
+.product-box {
+  transition: 1s ease; 
+}
+
+.product-box:hover {
+  border: 3px solid #D25A70;
+  transition: 1s ease;
+ }
+
+ .special-button {
+  border: none;
+  background-color: #fff;
+ }
 
 //start top bar
 $menu-background: #FF6D88;
@@ -72,7 +84,7 @@ $menu-line: #D25A70;
 }
 
 .menu-text {
-  color: #333;
+  color: $dark-gray;
   
   @media only screen and (max-width: 40em) {
     display: none !important;
@@ -81,7 +93,7 @@ $menu-line: #D25A70;
 
 @media only screen and (min-width: 40em) {
   .menu:last-child {
-    border-left: 1px solid $menu-line;
+    border-left: none
   }
 
   .menu:first-child {
@@ -90,7 +102,7 @@ $menu-line: #D25A70;
 
   .menu {
     li:not(:last-child) {
-      border-right: 1px solid $menu-line;
+      border-right: none;
     }
   }
 }
@@ -116,6 +128,68 @@ $menu-line: #D25A70;
   background: transparent;
 }
 //end top bar
+
+//centered top bar
+/* Variables */
+
+// Adjust width accordingly (use even #'s)
+$logo-width: 118px;
+// Reduce px value to increase space between logo and menu text
+$logo-padding: $logo-width - 32px; 
+// Leave alone
+$logo-margin: - ($logo-width / 2);
+
+/* Small Navigation */
+.logo-small {
+  float: right;
+}
+
+.title-bar {
+  padding: 0 .5rem;
+}
+
+.menu-icon,
+.title-bar-title {
+  position: relative;
+  top: 10px;
+}
+
+/* Medium-Up Navigation */
+@media only screen and (min-width: 40rem) { 
+
+  .logo-wrapper {
+    position: relative;
+    
+    .logo {
+      width: $logo-width;
+      position: absolute;
+      left: 50%;
+      right: 50%;
+      margin-left: $logo-margin;
+    } 
+  }
+
+  // Right part
+  .top-bar-right {
+    width: 50%;
+    padding-left: $logo-padding;
+    
+    ul {
+      float: left;
+    }
+  }
+  
+  // Left part
+  .top-bar-left {
+    width:  50%;
+    padding-right: $logo-padding;
+    
+    ul {
+      float: right;
+    }
+  }
+}
+//end center nav bar
 
 //start footer
 .footer {
