@@ -19,7 +19,7 @@
     <!-- off-canvas title bar for 'small' screen -->
     <div class="title-bar" data-responsive-toggle="widemenu" data-responsive-toggle="nav-menu" data-hide-for="medium">
       <div class="title-bar-left">
-        <span class="title-bar-title" style="font-size: 1.5rem"><%= link_to 'ColorCrush', '/', {:style => "color: #fff"} %></span>
+        <span class="title-bar-title" style="font-size: 1.5rem;"><%= link_to 'ColorCrush', '/', {:style => "color: #fff"} %></span>
       </div>
       <div class="title-bar-right">
         <span class="title-bar-title">
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <!-- off-canvas right menu -->
+  <!-- off-canvas right menu -->
   <nav class="top-bar" id="nav-menu">
     <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
       <ul class="vertical dropdown menu" data-dropdown-menu>
@@ -65,7 +65,7 @@
 
       <div class="logo-wrapper hide-for-small-only">
         <div class="logo">
-          <a href="/"><img src="http://placehold.it/350x150?text=LOGO"></a>
+          <a href="/"><h1>ColorCrush</h1></a>
         </div>
       </div>
 
@@ -73,13 +73,13 @@
         <ul class="dropdown menu" data-dropdown-menu>
           <li class="has-submenu">
             <% if user_signed_in? %>
-              <a href="#"><%= current_user.email %></a>
+              <span style="font-size: 1.3rem"><a href="#">Profile</a></span>
             <% else %>
               <%= link_to 'Register', '/users/sign_up' %>
             <% end %>
             <ul class="menu submenu vertical" data-submenu>
               <% if user_signed_in? %>
-                <li><%= link_to 'Profile', '/user' %></li>
+                <li><%= link_to 'Profile Home', '/user' %></li>
                 <li><%= link_to 'Traincase', '/traincase' %></li>
                 <li><%= link_to 'Wishlist', '/wishlist' %></li>
                 <li><%= link_to 'Sign Out', '/users/sign_out', method: :delete %></li>
@@ -107,13 +107,8 @@
           <% end %>
         </div>
 
-        <br>
-
         <% flash.each do |name, message| %>
-          <div data-alert class="alert-box secondary center">
             <%= message.upcase %>
-            <a href="#" class="close">&times;</a>
-          </div>
         <% end %>
 
         <br>
@@ -126,8 +121,6 @@
   <!-- close wrapper, no more content after this -->
   </div>
 </div>
-
-</body>
 
 <footer class="footer">
   <div class="row">
@@ -143,5 +136,7 @@
     </div>
   </div>
 </footer>
+
+</body>
 
 </html>

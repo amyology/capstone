@@ -2,13 +2,18 @@
 
   <% if !@searched %>
     
-    <div class="medium-6 large-6 columns">
-      <h1>ColorCrush</h1>
-      <p class="subheader">Blurb goes here. <br> Blurb blurb blurb.<br> Bluuurb.</p>
+    <div class="hide-for-small-only medium-12 large-12 columns header">
+      <div class="header3">      
+        <h1>ColorCrush</h1>
+        <div style="padding: 10px">
+          <p class="subheader">Blurb goes here. <br> Blurb blurb blurb.<br> Bluuurb.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="show-for-medium show-for-large medium-6 large-6 columns">
-      <img src="http://placehold.it/400x370&text=PSR1257 + 12 C">
+    <div class="show-for-small-only" style="padding: 10px">
+      <span style="font-size: 2rem">ColorCrush</span> <br>
+      Blurb stuff here.
     </div>
 
   <% end %>
@@ -37,7 +42,6 @@
     <% end %>
 
   <% else %>
-    <hr>
     <p class="lead">Recently Added</p>
       <% @recent_products.each do |product| %>
         <a href="/products/<%= product.id %>"><%= image_tag "#{product.image}", class: 'thumbnail' %></a>
@@ -57,9 +61,9 @@
       <% end %>
   <% end %>
 
-  <div class="row column">
+<!--   <div class="row column">
     <a class="button hollow expanded">Load More</a>
-  </div>
+  </div> -->
 
 </div>
 
