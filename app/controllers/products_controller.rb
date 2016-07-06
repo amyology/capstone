@@ -43,7 +43,9 @@ class ProductsController < ApplicationController
       undertone: params[:undertone],
       product_type: params[:product_type],
       image: params[:image],
+      avatar: params[:avatar],
       color_id: params[:color_id]
+
       )
     flash[:success] = "Product Added"
     redirect_to "/products/#{@product.id}"

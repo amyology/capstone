@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   validates :name, presence: true
   validates :brand, presence: true
   validates :product_type, presence: true
-  validates :image, presence: true
+  # validates :image, presence: true
 
   has_many :traincases
   has_many :wishlists
@@ -17,5 +17,9 @@ class Product < ActiveRecord::Base
   has_many :tags, through: :dupes
 
   belongs_to :color
+
+  has_attached_file :image, styles: { small: "100x100", med: "250x250", large: "500x500" } 
+  has_attached_file :avatar, styles: { small: "100x100", med: "250x250", large: "500x500" }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   
 end
